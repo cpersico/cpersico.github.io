@@ -1,2 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Distant Thunder (Posts about posts)</title><link>https://cpersico.github.io/</link><description></description><atom:link href="https://cpersico.github.io/categories/cat_posts.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:cpersico@gmail.com"&gt;cpersico&lt;/a&gt; </copyright><lastBuildDate>Sat, 20 Jul 2019 00:55:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Hello World</title><link>https://cpersico.github.io/posts/hello-world/</link><dc:creator>cpersico</dc:creator><description>&lt;p&gt;This is a new post!&lt;/p&gt;</description><guid>https://cpersico.github.io/posts/hello-world/</guid><pubDate>Sat, 20 Jul 2019 00:53:05 GMT</pubDate></item></channel></rss>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Distant Thunder (Posts about posts)</title><link>https://cpersico.github.io/</link><description></description><atom:link href="https://cpersico.github.io/categories/cat_posts.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:cpersico@gmail.com"&gt;cpersico&lt;/a&gt; </copyright><lastBuildDate>Sat, 20 Jul 2019 03:27:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Thoughts On Legacy Software</title><link>https://cpersico.github.io/posts/thoughts-on-legacy-software/</link><dc:creator>cpersico</dc:creator><description>&lt;div&gt;&lt;p&gt;When I joined my previous job I was faced with what had become a Gordian knot in that company. 
+For years it had shackled progress and innovation. Eventually, the opportunity for improvement appeared 
+and a solution so simple was implemented that I was baffled that none of us had seen it before. 
+After that, all pieces seemed to fall in place on their own and the gears started turning.&lt;/p&gt;
+&lt;p&gt;I learned a valuable lesson about software design from that.&lt;/p&gt;
+&lt;p&gt;The pipeline at the moment consisted of having transformed the previous product (a desktop application) 
+into a monolithic engine behind a CLI.
+The platform of the new project would invoke that through remote sensors and return the results. &lt;/p&gt;
+&lt;p&gt;For illustration here's a simplified diagram.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="diagram v1" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_1.png"&gt;&lt;/p&gt;
+&lt;p&gt;The engine was over 100K LOC, and we needed to tear it down into services. Some of the problems we were facing had to
+do with coordinating our sprints with the Platform's team to make sure nothing broke, but the pace of the project made it
+very complex as there were many fronts to attack. On our side we couldn't do much on our own because the CLI was based on the
+desktop application, so the parameters it needed were a bunch of XMLs that represented the internal state of the main core class.&lt;/p&gt;
+&lt;p&gt;We were stuck with this for quite a while until I had the chance to develop a new engine that would integrate with a completely different system.
+Since we didn't want to limit ourselves from the start (and we had the urgency of coming up with a new product) after some convincing I was
+able to join forces with other teams and implement a public interface for each service.
+The new engine would require just the necessary parameters while the old one would receive whatever it was it needed as "extra params"&lt;/p&gt;
+&lt;p&gt;&lt;img alt="diagram v2" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_2.png"&gt;&lt;/p&gt;
+&lt;p&gt;From here on two things happened:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There was no need (or much less) to sync with other teams to work on our stack.&lt;/li&gt;
+&lt;li&gt;We were able to break down our monolithic under the condition of committing to the new public API.&lt;/li&gt;
+&lt;li&gt;The new services would not require the internal objects of the desktop application, so they were simpler and easier to test.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After a couple of months it looked like this:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="diagram v3" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_3.png"&gt;&lt;/p&gt;
+&lt;p&gt;We reduced the LOC count to &amp;lt;10K and greatly increased the testability. Eventually, the support tickets regarding our stack 
+became less and less frequent. The monolith engine it's still there, but now it has only one responsibility. As for the public API, it
+also has the responsibility of transforming the output from the new services (which is our ideal output) to the old output generated by the 
+desktop app (because the Platform expects that), but that is another battle...&lt;/p&gt;
+&lt;p&gt;This is a story about imperfect software design, about working on something huge under constraints beyond our control, patience and choosing your battles.
+What I learned is that the opportunity for change &lt;em&gt;may&lt;/em&gt; come someday and you may not have control over it, all you can do is &lt;em&gt;be ready&lt;/em&gt;. 
+Understand the problem in deep, know your constraints, think outside the box and spend your time, not frustrating, but preparing to make the best 
+out of the opportunity when &lt;em&gt;(if)&lt;/em&gt; it comes.&lt;/p&gt;
+&lt;p&gt;And most importantly, have patience and a clear mind.&lt;/p&gt;&lt;/div&gt;</description><guid>https://cpersico.github.io/posts/thoughts-on-legacy-software/</guid><pubDate>Sat, 20 Jul 2019 01:27:38 GMT</pubDate></item></channel></rss>

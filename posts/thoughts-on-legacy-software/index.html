@@ -2,17 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Personal Blog">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Distant Thunder</title>
-<link href="assets/css/theme.css" type="text/css" rel="stylesheet">
-<link href="assets/css/pure.css" type="text/css" rel="stylesheet">
-<link href="assets/css/style.css" type="text/css" rel="stylesheet">
+<title>Thoughts On Legacy Software | Distant Thunder</title>
+<link href="../../assets/css/theme.css" type="text/css" rel="stylesheet">
+<link href="../../assets/css/pure.css" type="text/css" rel="stylesheet">
+<link href="../../assets/css/style.css" type="text/css" rel="stylesheet">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
-<link rel="canonical" href="https://cpersico.github.io/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/thoughts-on-legacy-software/" type="text/html">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://cpersico.github.io/posts/thoughts-on-legacy-software/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="cpersico">
+<meta property="og:site_name" content="Distant Thunder">
+<meta property="og:title" content="Thoughts On Legacy Software">
+<meta property="og:url" content="https://cpersico.github.io/posts/thoughts-on-legacy-software/">
+<meta property="og:description" content="When I joined my previous job I was faced with what had become a Gordian knot in that company. 
+For years it had shackled progress and innovation. Eventually, the opportunity for improvement appeared ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-07-19T22:27:38-03:00">
 </head>
 <body>
 <div class="body_container">
@@ -26,9 +32,9 @@
                 <div class="bitcron_nav">
                     <div class="site_nav_wrap">
                         <ul class="site_nav sm sm-base">
-<li><a href="archive.html" class="nav__item">Archive</a></li>
-            <li><a href="categories/" class="nav__item">Tags</a></li>
-            <li><a href="rss.xml" class="nav__item">RSS feed</a></li>
+<li><a href="../../archive.html" class="nav__item">Archive</a></li>
+            <li><a href="../../categories/" class="nav__item">Tags</a></li>
+            <li><a href="../../rss.xml" class="nav__item">RSS feed</a></li>
 
                             
                         </ul>
@@ -47,18 +53,11 @@
                     <div class="row">
                         
                         
-
-    
-    <div class="post">
-        <h2 class="post-title"><a href="posts/thoughts-on-legacy-software/">Thoughts On Legacy Software</a></h2>
-        <div class="post-meta">
-            2019-07-19 22:27
-        </div>
-        <div class="post-meta">
-                cpersico
-        </div>
-        <div class="post-content">
-                <div>
+<div class="post post-page">
+    <h1 class="post-title">Thoughts On Legacy Software</h1>
+    <div class="post-meta">2019-07-19 22:27</div>
+    <div class="post-content">
+        <div>
 <p>When I joined my previous job I was faced with what had become a Gordian knot in that company. 
 For years it had shackled progress and innovation. Eventually, the opportunity for improvement appeared 
 and a solution so simple was implemented that I was baffled that none of us had seen it before. 
@@ -68,7 +67,7 @@ After that, all pieces seemed to fall in place on their own and the gears starte
 into a monolithic engine behind a CLI.
 The platform of the new project would invoke that through remote sensors and return the results. </p>
 <p>For illustration here's a simplified diagram.</p>
-<p><img alt="diagram v1" src="images/thoughts-on-legacy-software/vnc_1.png"></p>
+<p><img alt="diagram v1" src="../../images/thoughts-on-legacy-software/vnc_1.png"></p>
 <p>The engine was over 100K LOC, and we needed to tear it down into services. Some of the problems we were facing had to
 do with coordinating our sprints with the Platform's team to make sure nothing broke, but the pace of the project made it
 very complex as there were many fronts to attack. On our side we couldn't do much on our own because the CLI was based on the
@@ -77,7 +76,7 @@ desktop application, so the parameters it needed were a bunch of XMLs that repre
 Since we didn't want to limit ourselves from the start (and we had the urgency of coming up with a new product) after some convincing I was
 able to join forces with other teams and implement a public interface for each service.
 The new engine would require just the necessary parameters while the old one would receive whatever it was it needed as "extra params"</p>
-<p><img alt="diagram v2" src="images/thoughts-on-legacy-software/vnc_2.png"></p>
+<p><img alt="diagram v2" src="../../images/thoughts-on-legacy-software/vnc_2.png"></p>
 <p>From here on two things happened:</p>
 <ul>
 <li>There was no need (or much less) to sync with other teams to work on our stack.</li>
@@ -85,7 +84,7 @@ The new engine would require just the necessary parameters while the old one wou
 <li>The new services would not require the internal objects of the desktop application, so they were simpler and easier to test.</li>
 </ul>
 <p>After a couple of months it looked like this:</p>
-<p><img alt="diagram v3" src="images/thoughts-on-legacy-software/vnc_3.png"></p>
+<p><img alt="diagram v3" src="../../images/thoughts-on-legacy-software/vnc_3.png"></p>
 <p>We reduced the LOC count to &lt;10K and greatly increased the testability. Eventually, the support tickets regarding our stack 
 became less and less frequent. The monolith engine it's still there, but now it has only one responsibility. As for the public API, it
 also has the responsibility of transforming the output from the new services (which is our ideal output) to the old output generated by the 
@@ -96,16 +95,17 @@ Understand the problem in deep, know your constraints, think outside the box and
 out of the opportunity when <em>(if)</em> it comes.</p>
 <p>And most importantly, have patience and a clear mind.</p>
 </div>
-        </div>
     </div>
-
-
-
+    <div class="postpromonav">
+        <nav></nav>
+</div>
+    
+    
 
 
     
 
-
+</div>
 
                 </div>
                 <!--End of body content-->
@@ -135,10 +135,14 @@ out of the opportunity when <em>(if)</em> it comes.</p>
 </li>-->
     <!--%endif-->
     <!--% if show_sourcelink:-->
-    <!---->
+    <!--
+    <li>
+        <a href="/posts/thoughts-on-legacy-software/index.md" id="sourcelink">Source</a>
+    </li>
+-->
     <!--%endif-->
-    <link href="assets/css/duoshuo.css" type="text/css" rel="stylesheet">
-<script src="assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    <link href="../../assets/css/duoshuo.css" type="text/css" rel="stylesheet">
+<script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
     moment.locale("en");
     fancydates(0, "YYYY-MM-DD HH:mm");
     </script><!-- end fancy dates -->
