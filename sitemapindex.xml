@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <sitemap>
+  <loc>https://cpersico.github.io/categories/cat_posts.xml</loc>
+  <lastmod>2019-07-20T00:55:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://cpersico.github.io/categories/dorkly.xml</loc>
+  <lastmod>2018-01-03T02:57:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://cpersico.github.io/categories/regina-spektor.xml</loc>
+  <lastmod>2017-11-08T03:06:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://cpersico.github.io/categories/the-distillery.xml</loc>
+  <lastmod>2018-01-03T02:57:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://cpersico.github.io/galleries/rss.xml</loc>
+  <lastmod>2019-07-20T01:00:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://cpersico.github.io/rss.xml</loc>
+  <lastmod>2019-07-20T01:00:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://cpersico.github.io/sitemap.xml</loc>
+  <lastmod>2019-07-20T01:00:00Z</lastmod>
+ </sitemap>
+</sitemapindex>

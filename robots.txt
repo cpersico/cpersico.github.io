@@ -1,0 +1,4 @@
+Sitemap: https://cpersico.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: cpersico.github.io
