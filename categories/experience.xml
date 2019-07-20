@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Distant Thunder (Posts about experience)</title><link>https://cpersico.github.io/</link><description></description><atom:link href="https://cpersico.github.io/categories/experience.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:cpersico@gmail.com"&gt;cpersico&lt;/a&gt; </copyright><lastBuildDate>Sat, 20 Jul 2019 19:14:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Thoughts On Legacy Software</title><link>https://cpersico.github.io/posts/thoughts-on-legacy-software/</link><dc:creator>cpersico</dc:creator><description>&lt;div&gt;&lt;p&gt;Once upon a time, I joined a company where I faced what had become their Gordian Knot. &lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Distant Thunder (Posts about experience)</title><link>https://cpersico.github.io/</link><description></description><atom:link href="https://cpersico.github.io/categories/experience.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:cpersico@gmail.com"&gt;cpersico&lt;/a&gt; </copyright><lastBuildDate>Sat, 20 Jul 2019 19:34:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Thoughts On Legacy Software</title><link>https://cpersico.github.io/posts/thoughts-on-legacy-software/</link><dc:creator>cpersico</dc:creator><description>&lt;div&gt;&lt;p&gt;Once upon a time, I joined a company where I faced what had become their Gordian Knot. &lt;/p&gt;
 &lt;h4&gt;The Beast&lt;/h4&gt;
 &lt;p&gt;During the development of their newest product, the company decided to adapt the previous one as a component. 
 The new product is a &lt;strong&gt;server-client architecture on-prem&lt;/strong&gt;. The old product is a &lt;strong&gt;desktop application&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;The app is a massive monolith containing UI code, internal states, license management, a database, etc.
 After the refactor the resulting component was an &lt;strong&gt;engine 120K+ LOC&lt;/strong&gt; in size.&lt;/p&gt;
 &lt;p&gt;To interact with this engine, they created a &lt;strong&gt;CLI&lt;/strong&gt;. But since the engine kept the internals of the desktop app it had to reconstruct internal states from files. 
-It had a single endpoint whose input required a combination of &lt;strong&gt;XML files&lt;/strong&gt;. Depending on which files were passed it would determine what task to perform.  &lt;/p&gt;
+It had a single endpoint whose input required a combination of &lt;strong&gt;XML files&lt;/strong&gt;. The engine infers the task to perform from the files it receives.  &lt;/p&gt;
 &lt;p&gt;Every functionality interconnects through a huge &lt;strong&gt;core class&lt;/strong&gt;. This class is in charge of everything. 
 Initialization, execution, analysis and output generation. Everything. &lt;br&gt;
-The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using threaded code that is no longer necessary.&lt;/p&gt;
+The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using unnecesary threaded code.&lt;/p&gt;
 &lt;h4&gt;The Problem&lt;/h4&gt;
 &lt;p&gt;Our day-to-day was &lt;strong&gt;full of support tickets&lt;/strong&gt;. We had to diagnose this huge codebase where almost anything could happen. 
 Also, the tests required the mocking of the core class. That made them complex and often unreliable. The suite took 40 minutes to run on our CI environment.&lt;/p&gt;
 &lt;p&gt;We allocated time for maintenance tasks, but progress was slow.&lt;br&gt;
 We needed to simplify this. Discard all the desktop code and redefine the input to be what we needed to perform each task. But where to start? we couldn't just stop working on the product.&lt;/p&gt;
 &lt;p&gt;For years it had shackled progress and innovation.&lt;br&gt;
-Finally, the opportunity for improvement appeared and a very simple solution was implemented. After that, all pieces seemed to fall in place on their own and the gears started turning.&lt;/p&gt;
+Finally, the opportunity for improvement appeared and we implemented a very simple solution. After that, all pieces seemed to fall in place on their own and the gears started turning.&lt;/p&gt;
 &lt;p&gt;I learned a valuable lesson about software design.&lt;/p&gt;
 &lt;h4&gt;The Action Plan&lt;/h4&gt;
 &lt;p&gt;The stack consisted of &lt;strong&gt;the platform&lt;/strong&gt;, &lt;strong&gt;the actuator&lt;/strong&gt; (in charge of invoking the engine) and the engine.
-The ownership is split between two teams. One in charge of the platform and the actuator. Another in charge of the engine. I was part of the engine team.&lt;/p&gt;
+The ownership belongs to two teams. One in charge of the platform and the actuator. Another in charge of the engine. I was part of the engine team.&lt;/p&gt;
 &lt;h5&gt;Simplified diagram.&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="diagram v1" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_1.png"&gt;&lt;/p&gt;
 &lt;p&gt;We needed to tear that monolith down into services. Each in charge of a single functionality. Some of the problems we were facing had to do with coordinating our sprint with the other team. The pace of the projects made it impossible as both teams had different priorities. &lt;/p&gt;
 &lt;p&gt;On our side, we couldn't do much about the input either. The core class was traversal to every functionality. There was no way that refactoring would work.
 We needed to start from scratch and simplify each service. All while honoring the contract we had with the Platform.&lt;/p&gt;
-&lt;p&gt;We were stuck with this for months, years. Eventually, I was required to start working on a new engine for a different system.
+&lt;p&gt;We were stuck with this for months, years. Eventually, PM required me to start working on a new engine for a different system.
 We didn't want to limit ourselves from the start (and we had the urgency of coming up with a new feature).
 It took some convincing, but I was able to join forces with the other teams. After syncing our schedules we implemented a public interface layer for each service.
 The signature of every endpoint would be clean and concise.
-With the new engine made from scratch, this was ideal. The old one would receive the XMLs through an auxiliary param &lt;code&gt;extra_params&lt;/code&gt;.&lt;/p&gt;
+We made the new engine from scratch with this interface in mind. While the old one would receive the XMLs through an auxiliary param &lt;code&gt;extra_params&lt;/code&gt;.&lt;/p&gt;
 &lt;h5&gt;After implementing the public interface layer and adding the new engine&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="diagram v2" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_2.png"&gt;&lt;/p&gt;
 &lt;h4&gt;Here's what we achieved:&lt;/h4&gt;
@@ -38,7 +38,7 @@ With the new engine made from scratch, this was ideal. The old one would receive
 &lt;li&gt;Other teams became consumers of a public interface instead of the CLI.&lt;/li&gt;
 &lt;li&gt;No need (or at least much less) to sync with other teams to do maintenance work on our stack.&lt;/li&gt;
 &lt;li&gt;We were able to break down the monolith &lt;strong&gt;one functionality at the time&lt;/strong&gt;. The only constraint is committing to the new public interface.&lt;/li&gt;
-&lt;li&gt;New services were coded from scratch, simpler and easier to test. But only &lt;strong&gt;because we were very familiar with the subject&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;We coded the new services from scratch, simpler and easier to test. But only &lt;strong&gt;because we were very familiar with the subject&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;During the rollout process of new code, we could do AB testing vs the old engine.&lt;/li&gt;
 &lt;li&gt;Test suite now takes &amp;lt; 5 min for all projects.&lt;/li&gt;
 &lt;li&gt;Public interface required only the necessary to do each task.&lt;/li&gt;
