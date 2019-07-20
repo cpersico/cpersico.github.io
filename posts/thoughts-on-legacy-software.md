@@ -15,7 +15,7 @@ Once upon a time, I joined a company where I faced what had become their Gordian
 
 ### The Beast
 
-During development of their newest product, the company decided to adapt the previous one as a component. 
+During the development of their newest product, the company decided to adapt the previous one as a component. 
 The new product is a **server-client architecture on-prem**. The old product is a **desktop application**.
 
 The app is a massive monolith containing UI code, internal states, license management, a database, etc.
@@ -84,7 +84,7 @@ The new engine made from scratch, so this was ideal. The old one would receive t
 
 After a couple of months it looked like this:
 
-#### Some months after the gears unclogged
+#### Some months after the gears started turning
 ![diagram v3](/images/thoughts-on-legacy-software/vnc_3.png)
 
 
