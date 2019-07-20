@@ -61,9 +61,9 @@ We needed to start from scratch and simplify each service. All while honoring th
 
 We were stuck with this for months, years. Eventually, I was required to start working on a new engine for a different system.
 We didn't want to limit ourselves from the start (and we had the urgency of coming up with a new feature).
-After some convincing, I was able to join forces with the other teams. After syncing our schedules we implemented a public interface layer for each service.
+It took some convincing, but I was able to join forces with the other teams. After syncing our schedules we implemented a public interface layer for each service.
 The signature of every endpoint would be clean and concise.
-The new engine made from scratch, so this was ideal. The old one would receive the XMLs in a special param `extra_params` in the endpoint.
+The new engine were made from scratch, so this was ideal. The old one would receive the XMLs through an auxiliary param `extra_params`.
 
 
 #### After implementing the public interface layer and adding the new engine
