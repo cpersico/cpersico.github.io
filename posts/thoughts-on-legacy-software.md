@@ -15,13 +15,13 @@ Once upon a time, I joined a company where I faced what had become their Gordian
 
 ### The Beast
 
-During the development of their newest product, the company decided to adapt the previous one as a component. 
+It all started during the development of their newest product. The company decided to adapt their previous product as a component. 
 The new product is a **server-client architecture on-prem**. The old product is a **desktop application**.
 
-The app is a massive monolith containing UI code, internal states, license management, a database, etc.
+The app is a massive monolith. Containing UI code, internal states, license management, a database, etc.
 After the refactor the resulting component was an **engine 120K+ LOC** in size.
 
-To interact with this engine, they created a **CLI**. But since the engine kept the internals of the desktop app it had to reconstruct internal states from files. 
+To interact with this engine, they created a **CLI**. But the engine kept the internals of the desktop app. So it had to reconstruct internal states from files. 
 It had a single endpoint whose input required a combination of **XML files**. The engine infers the task to perform from the files it receives.  
 
 Every functionality interconnects through a huge **core class**. This class is in charge of everything. 
@@ -70,8 +70,9 @@ We made the new engine from scratch with this interface in mind. While the old o
 
 * Other teams became consumers of a public interface instead of the CLI.
 * No need (or at least much less) to sync with other teams to do maintenance work on our stack.
-* We were able to break down the monolith **one functionality at the time**. The only constraint is committing to the new public interface.
+* We were able to break down the monolith **one functionality at a time**. The only constraint is committing to the new public interface.
 * We coded the new services from scratch, simpler and easier to test. But only **because we were very familiar with the subject**.
+* The interface of the new services requires only what they need to perform their job.
 * During the rollout process of new code, we could do AB testing vs the old engine.
 * Test suite now takes < 5 min for all projects.
 * Public interface required only the necessary to do each task.
