@@ -63,7 +63,7 @@ We were stuck with this for months, years. Eventually, I was required to start w
 We didn't want to limit ourselves from the start (and we had the urgency of coming up with a new feature).
 It took some convincing, but I was able to join forces with the other teams. After syncing our schedules we implemented a public interface layer for each service.
 The signature of every endpoint would be clean and concise.
-The new engine were made from scratch, so this was ideal. The old one would receive the XMLs through an auxiliary param `extra_params`.
+With the new engine made from scratch, this was ideal. The old one would receive the XMLs through an auxiliary param `extra_params`.
 
 
 #### After implementing the public interface layer and adding the new engine
