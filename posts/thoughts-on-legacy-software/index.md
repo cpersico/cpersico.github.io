@@ -47,7 +47,7 @@ I learned a valuable lesson about software design.
 ### The Action Plan
 
 The stack consisted of **the platform**, **the actuator** (in charge of invoking the engine) and the engine.
-The ownership is split between two teams. One in charge of the platform and the actuator. One in charge of the engine (this was my team).
+The ownership is split between two teams. One in charge of the platform and the actuator. Another in charge of the engine. I was part of the engine team.
 
 
 ####Simplified diagram.
@@ -74,7 +74,7 @@ The new engine were made from scratch, so this was ideal. The old one would rece
 * Other teams became consumers of a public interface instead of the CLI.
 * No need (or at least much less) to sync with other teams to do maintenance work on our stack.
 * We were able to break down the monolith **one functionality at the time**. The only constraint is committing to the new public interface.
-* New services were coded from scratch, simpler and easier to test. But only **because we were very familiar with the subject matter**.
+* New services were coded from scratch, simpler and easier to test. But only **because we were very familiar with the subject**.
 * During the rollout process of new code, we could do AB testing vs the old engine.
 * Test suite now takes < 5 min for all projects.
 * Public interface required only the necessary to do each task.
