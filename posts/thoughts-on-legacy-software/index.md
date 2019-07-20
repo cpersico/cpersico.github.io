@@ -2,8 +2,8 @@
 .. title: Thoughts On Legacy Software
 .. slug: thoughts-on-legacy-software
 .. date: 2019-07-19 22:27:38 UTC-03:00
-.. tags: 
-.. category: 
+.. tags: software design, legacy code, experience
+.. category:
 .. link: 
 .. description: 
 .. type: text
