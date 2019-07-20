@@ -72,7 +72,7 @@ After the refactor the resulting component was an <strong>engine 120K+ LOC</stro
 It had a single endpoint whose input required a combination of <strong>XML files</strong>. The engine infers the task to perform from the files it receives.  </p>
 <p>Every functionality interconnects through a huge <strong>core class</strong>. This class is in charge of everything. 
 Initialization, execution, analysis and output generation. Everything. <br>
-The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using unnecesary threaded code.</p>
+The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using threaded code that is no longer necessary.</p>
 <h4>The Problem</h4>
 <p>Our day-to-day was <strong>full of support tickets</strong>. We had to diagnose this huge codebase where almost anything could happen. 
 Also, the tests required the mocking of the core class. That made them complex and often unreliable. The suite took 40 minutes to run on our CI environment.</p>

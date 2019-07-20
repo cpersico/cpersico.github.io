@@ -26,7 +26,7 @@ It had a single endpoint whose input required a combination of **XML files**. Th
 
 Every functionality interconnects through a huge **core class**. This class is in charge of everything. 
 Initialization, execution, analysis and output generation. Everything.   
-The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using unnecesary threaded code.
+The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using threaded code that is no longer necessary.
 
 
 ### The Problem
