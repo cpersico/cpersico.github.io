@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Distant Thunder</title><link>https://cpersico.github.io/</link><description>Personal Blog</description><atom:link href="https://cpersico.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:cpersico@gmail.com"&gt;cpersico&lt;/a&gt; </copyright><lastBuildDate>Sat, 20 Jul 2019 05:15:14 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Thoughts On Legacy Software</title><link>https://cpersico.github.io/posts/thoughts-on-legacy-software/</link><dc:creator>cpersico</dc:creator><description>&lt;div&gt;&lt;p&gt;Once upon a time, I joined a company where I was faced with what had become their Gordian Knot. &lt;/p&gt;
-&lt;h3&gt;The Beast&lt;/h3&gt;
-&lt;p&gt;During the development of the newest company product (an on-prem server-client architecture) the decision was made to adapt the previous one (a desktop application) as a component behind a CLI. The application was a massive monolith containing UI code, 
-internal states, license management, a knowledge database, the UI main loop, etc.&lt;br&gt;
-After the refactor the resulting component was a super complex monolith engine &lt;strong&gt;over 100K LOC&lt;/strong&gt; in size.&lt;/p&gt;
-&lt;p&gt;In order to interact with this engine, a CLI was created but it kept the internals of the desktop app, which had to reconstruct states from previous sessions from files so the input was exceptionally convoluted, it 
-was a single endpoint that required a combination of massive and complex XML files and, depending on which files 
-it received, it would determine what task to perform.  Every functionality was interconnected through a huge core class that was in charge of everything, from initialization, execution, analysis and output generation. &lt;br&gt;
-Besides, the CLI would keep behaving like a desktop app, recovering from errors and using
-threaded code which was no longer necessary.&lt;/p&gt;
-&lt;h3&gt;The Problem&lt;/h3&gt;
-&lt;p&gt;Our day-to-day was full of support tickets where we had to diagnose what happened in this huge codebase where almost anything was possible. 
-Also, the tests required mocking of the core class and that made them complex and often unreliable. 
-The suite took 40 minutes to run on our CI environment.&lt;/p&gt;
-&lt;p&gt;We scheduled a little bit of time from sprint to sprint for maintenance tasks, but its progress was very limited.
-We need to simplify this, to discard all the desktop internal code and, most importantly, redefine the input to be just what we needed to perform each task (actually it was just a couple of strings) but were to start? we couldn't just stop working on the product.&lt;/p&gt;
-&lt;p&gt;For years it had shackled progress and innovation. Eventually, the opportunity for improvement appeared and the solution was very simple.&lt;br&gt;
-After that, all pieces seemed to fall in place on their own and the gears started turning.&lt;/p&gt;
-&lt;p&gt;I learned a valuable lesson about software design from that.&lt;/p&gt;
-&lt;h3&gt;The Action Plan&lt;/h3&gt;
-&lt;p&gt;The stack at the moment consisted of the platform of the new product, the actuator (in charge of invoking the engine) and the engine itself.
-The ownership was divided into two teams, one in charge of the platform and the actuator and my team, in charge of the engine.&lt;/p&gt;
-&lt;p&gt;For illustration purposes here's a simplified diagram.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Distant Thunder</title><link>https://cpersico.github.io/</link><description>Personal Blog</description><atom:link href="https://cpersico.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:cpersico@gmail.com"&gt;cpersico&lt;/a&gt; </copyright><lastBuildDate>Sat, 20 Jul 2019 06:52:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Thoughts On Legacy Software</title><link>https://cpersico.github.io/posts/thoughts-on-legacy-software/</link><dc:creator>cpersico</dc:creator><description>&lt;div&gt;&lt;p&gt;Once upon a time, I joined a company where I faced what had become their Gordian Knot. &lt;/p&gt;
+&lt;h4&gt;The Beast&lt;/h4&gt;
+&lt;p&gt;During development of their newest product, the company decided to adapt the previous one as a component. 
+The new product is a &lt;strong&gt;server-client architecture on-prem&lt;/strong&gt;. The old product is a &lt;strong&gt;desktop application&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The app is a massive monolith containing UI code, internal states, license management, a database, etc.
+After the refactor the resulting component was an &lt;strong&gt;engine 120K+ LOC&lt;/strong&gt; in size.&lt;/p&gt;
+&lt;p&gt;To interact with this engine, they created a &lt;strong&gt;CLI&lt;/strong&gt;. But since the engine kept the internals of the desktop app it had to reconstruct internal states from files. 
+It had a single endpoint whose input required a combination of &lt;strong&gt;XML files&lt;/strong&gt;. Depending on which files were passed it would determine what task to perform.  &lt;/p&gt;
+&lt;p&gt;Every functionality interconnects through a huge &lt;strong&gt;core class&lt;/strong&gt;. This class is in charge of everything. 
+Initialization, execution, analysis and output generation. Everything. &lt;br&gt;
+The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using threaded code that is no longer necessary.&lt;/p&gt;
+&lt;h4&gt;The Problem&lt;/h4&gt;
+&lt;p&gt;Our day-to-day was &lt;strong&gt;full of support tickets&lt;/strong&gt;. We had to diagnose this huge codebase where almost anything could happen. 
+Also, the tests required the mocking of the core class. That made them complex and often unreliable. The suite took 40 minutes to run on our CI environment.&lt;/p&gt;
+&lt;p&gt;We allocated time for maintenance tasks, but progress was slow.&lt;br&gt;
+We needed to simplify this. Discard all the desktop code and redefine the input to be what we needed to perform each task. But where to start? we couldn't just stop working on the product.&lt;/p&gt;
+&lt;p&gt;For years it had shackled progress and innovation.&lt;br&gt;
+Finally, the opportunity for improvement appeared and a very simple solution was implemented. After that, all pieces seemed to fall in place on their own and the gears started turning.&lt;/p&gt;
+&lt;p&gt;I learned a valuable lesson about software design.&lt;/p&gt;
+&lt;h4&gt;The Action Plan&lt;/h4&gt;
+&lt;p&gt;The stack consisted of &lt;strong&gt;the platform&lt;/strong&gt;, &lt;strong&gt;the actuator&lt;/strong&gt; (in charge of invoking the engine) and the engine.
+The ownership is split between two teams. One in charge of the platform and the actuator. One in charge of the engine (this was my team).&lt;/p&gt;
+&lt;h5&gt;Simplified diagram.&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="diagram v1" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_1.png"&gt;&lt;/p&gt;
-&lt;p&gt;We needed to tear that monolith down into services, each one in charge of a single functionality. Some of the problems we were facing had to
-do with coordinating our sprints with the Platform's team to make sure nothing broke, but the pace of the projects made it
-impossible as there were many fronts to attack. On our side we couldn't do much about the input either, because the core class was traversal to
-every functionality, there was no way that refactoring this would work. We needed to start from scratch and simplify each service all while honoring the
-contract we had with the Platform.&lt;/p&gt;
-&lt;p&gt;We were stuck with this for quite a while until I had the chance to develop a new engine that would integrate with a completely different system.
-Since we didn't want to limit ourselves from the start (and we had the urgency of coming up with a new product) after some convincing I was
-able to join forces with the other teams to sync and implement a public interface for each service.
-The signature of every endpoint would be clean and concise, requiring only the necessary to perform each task.
-The new engine would be created from scratch, so this was ideal while the old one would receive whatever it was it needed through a special parameter &lt;code&gt;extra_params&lt;/code&gt; in the endpoint.&lt;/p&gt;
+&lt;p&gt;We needed to tear that monolith down into services. Each in charge of a single functionality. Some of the problems we were facing had to do with coordinating our sprint with the other team. The pace of the projects made it impossible as both teams had different priorities. &lt;/p&gt;
+&lt;p&gt;On our side, we couldn't do much about the input either. The core class was traversal to every functionality. There was no way that refactoring would work.
+We needed to start from scratch and simplify each service. All while honoring the contract we had with the Platform.&lt;/p&gt;
+&lt;p&gt;We were stuck with this for months, years. Eventually, I was required to start working on a new engine for a different system.
+We didn't want to limit ourselves from the start (and we had the urgency of coming up with a new feature).
+After some convincing, I was able to join forces with the other teams. After syncing our schedules we implemented a public interface layer for each service.
+The signature of every endpoint would be clean and concise.
+The new engine made from scratch, so this was ideal. The old one would receive the XMLs in a special param &lt;code&gt;extra_params&lt;/code&gt; in the endpoint.&lt;/p&gt;
+&lt;h5&gt;After implementing the public interface layer and adding the new engine&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="diagram v2" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_2.png"&gt;&lt;/p&gt;
-&lt;p&gt;Here's what we achieved:&lt;/p&gt;
+&lt;h4&gt;Here's what we achieved:&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;The other teams became consumers of a public interface instead of the CLI.&lt;/li&gt;
-&lt;li&gt;There was no need (or at least much less) to sync with other teams to do maintenance work on our stack.&lt;/li&gt;
-&lt;li&gt;We were able to break down the monolith &lt;strong&gt;one functionality at the time&lt;/strong&gt; under the condition of committing to the new public API.&lt;/li&gt;
-&lt;li&gt;The new services were coded from scratch, so they were simpler and easier to test, &lt;strong&gt;because we were very familiar with the subject matter&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;During the rollout process of new standalone functionality, we could do AB testing vs the old engine.&lt;/li&gt;
-&lt;li&gt;The test suite takes &amp;lt; 5 min for all projects.&lt;/li&gt;
-&lt;li&gt;The public interface required only the minimum necessary to do each task.&lt;/li&gt;
+&lt;li&gt;Other teams became consumers of a public interface instead of the CLI.&lt;/li&gt;
+&lt;li&gt;No need (or at least much less) to sync with other teams to do maintenance work on our stack.&lt;/li&gt;
+&lt;li&gt;We were able to break down the monolith &lt;strong&gt;one functionality at the time&lt;/strong&gt;. The only constraint is committing to the new public interface.&lt;/li&gt;
+&lt;li&gt;New services were coded from scratch, simpler and easier to test. But only &lt;strong&gt;because we were very familiar with the subject matter&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;During the rollout process of new code, we could do AB testing vs the old engine.&lt;/li&gt;
+&lt;li&gt;Test suite now takes &amp;lt; 5 min for all projects.&lt;/li&gt;
+&lt;li&gt;Public interface required only the necessary to do each task.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3&gt;The Aftermath&lt;/h3&gt;
+&lt;h4&gt;The Aftermath&lt;/h4&gt;
 &lt;p&gt;After a couple of months it looked like this:&lt;/p&gt;
+&lt;h5&gt;Some months after the gears unclogged&lt;/h5&gt;
 &lt;p&gt;&lt;img alt="diagram v3" src="https://cpersico.github.io/images/thoughts-on-legacy-software/vnc_3.png"&gt;&lt;/p&gt;
-&lt;p&gt;We reduced the LOC count to &lt;strong&gt;&amp;lt;10K&lt;/strong&gt; and greatly increased the testability. Eventually, the support tickets regarding our stack became less and less frequent. The monolith engine it's still there, but now it has only one responsibility. As for the public interface layer, it
-also has the responsibility of transforming the output from the new services (which is our ideal output) to the old output generated by the 
-desktop app (because the Platform expects that), but that is another battle...&lt;/p&gt;
-&lt;h3&gt;Lessons Learned&lt;/h3&gt;
-&lt;p&gt;This is a story about imperfect software design, about working on something huge under constraints beyond our control, patience and choosing your battles.
-What I learned is that the opportunity for change &lt;strong&gt;&lt;em&gt;may&lt;/em&gt;&lt;/strong&gt; come someday and you may not have control over it, all you can do is &lt;strong&gt;be ready&lt;/strong&gt;. 
-Understand the problem in deep, know your constraints, think outside the box and spend your time, not frustrating, but preparing to make the best 
-out of the opportunity when &lt;strong&gt;&lt;em&gt;(if)&lt;/em&gt;&lt;/strong&gt; it comes.&lt;/p&gt;
-&lt;p&gt;And most importantly, have patience and a clear mind.&lt;/p&gt;&lt;/div&gt;</description><category>experience</category><category>legacy code</category><category>software design</category><guid>https://cpersico.github.io/posts/thoughts-on-legacy-software/</guid><pubDate>Sat, 20 Jul 2019 01:27:38 GMT</pubDate></item></channel></rss>
+&lt;p&gt;We reduced the LOC count to &lt;strong&gt;&amp;lt;10K&lt;/strong&gt; and increased the testability. The support tickets of our stack became less and less frequent. The monolith engine it's still there, but now it has only one responsibility. 
+The public interface layer also has the responsibility of transforming the output. From the new services (which is our ideal output) to the old output generated by the 
+desktop app (because the Platform expects that) But that is another battle...&lt;/p&gt;
+&lt;h4&gt;Lessons Learned&lt;/h4&gt;
+&lt;p&gt;I will leave the hard technical details for another opportunity.&lt;/p&gt;
+&lt;p&gt;This is a story about imperfect software design. About working on something huge under constraints beyond our control. About patience and choosing battles.
+What I learned is that the opportunity for change may come someday and you may not have control over it. All you can do is &lt;strong&gt;be ready&lt;/strong&gt;. 
+Understand the problem in deep, know your constraints. Think outside the box. Spend your time, not frustrating, but preparing to make the best out of the opportunity when &lt;strong&gt;(if)&lt;/strong&gt; it comes.&lt;/p&gt;
+&lt;p&gt;And, foremost, have patience and a clear mind.&lt;/p&gt;&lt;/div&gt;</description><category>experience</category><category>legacy code</category><category>software design</category><guid>https://cpersico.github.io/posts/thoughts-on-legacy-software/</guid><pubDate>Sat, 20 Jul 2019 01:27:38 GMT</pubDate></item></channel></rss>
