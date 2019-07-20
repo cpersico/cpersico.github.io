@@ -26,7 +26,7 @@ SITE_URL = "https://cpersico.github.io/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://cpersico.github.io/"
 BLOG_EMAIL = "cpersico@gmail.com"
-BLOG_DESCRIPTION = "ranting and, sometimes, content"  # (translatable)
+BLOG_DESCRIPTION = "Personal Blog"  # (translatable)
 
 # Nikola is multilingual!
 #
