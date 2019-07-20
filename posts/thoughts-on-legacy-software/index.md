@@ -11,7 +11,7 @@
 
 When I joined my previous job I was faced with what had become a Gordian knot in that company. 
 For years it had shackled progress and innovation. Eventually, the opportunity for improvement appeared 
-and the solution was very simple. 
+and the solution was very simple.  
 After that, all pieces seemed to fall in place on their own and the gears started turning.
 
 I learned a valuable lesson about software design from that.
@@ -55,8 +55,8 @@ also has the responsibility of transforming the output from the new services (wh
 desktop app (because the Platform expects that), but that is another battle...
 
 This is a story about imperfect software design, about working on something huge under constraints beyond our control, patience and choosing your battles.
-What I learned is that the opportunity for change *may* come someday and you may not have control over it, all you can do is *be ready*. 
+What I learned is that the opportunity for change **_may_** come someday and you may not have control over it, all you can do is **be ready**. 
 Understand the problem in deep, know your constraints, think outside the box and spend your time, not frustrating, but preparing to make the best 
-out of the opportunity when *(if)* it comes.
+out of the opportunity when **_(if)_** it comes.
 
 And most importantly, have patience and a clear mind.
