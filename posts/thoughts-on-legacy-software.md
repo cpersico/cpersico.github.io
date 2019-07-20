@@ -22,11 +22,11 @@ The app is a massive monolith containing UI code, internal states, license manag
 After the refactor the resulting component was an **engine 120K+ LOC** in size.
 
 To interact with this engine, they created a **CLI**. But since the engine kept the internals of the desktop app it had to reconstruct internal states from files. 
-It had a single endpoint whose input required a combination of **XML files**. Depending on which files were passed it would determine what task to perform.  
+It had a single endpoint whose input required a combination of **XML files**. The engine infers the task to perform from the files it receives.  
 
 Every functionality interconnects through a huge **core class**. This class is in charge of everything. 
 Initialization, execution, analysis and output generation. Everything.   
-The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using threaded code that is no longer necessary.
+The engine would also keep behaving like a desktop app. Recovering from errors (hiding them) and using unnecesary threaded code.
 
 
 ### The Problem
@@ -38,7 +38,7 @@ We allocated time for maintenance tasks, but progress was slow.
 We needed to simplify this. Discard all the desktop code and redefine the input to be what we needed to perform each task. But where to start? we couldn't just stop working on the product.
 
 For years it had shackled progress and innovation.  
-Finally, the opportunity for improvement appeared and a very simple solution was implemented. After that, all pieces seemed to fall in place on their own and the gears started turning.
+Finally, the opportunity for improvement appeared and we implemented a very simple solution. After that, all pieces seemed to fall in place on their own and the gears started turning.
 
 I learned a valuable lesson about software design.
 
@@ -47,9 +47,7 @@ I learned a valuable lesson about software design.
 ### The Action Plan
 
 The stack consisted of **the platform**, **the actuator** (in charge of invoking the engine) and the engine.
-The ownership is split between two teams. One in charge of the platform and the actuator. Another in charge of the engine. I was part of the engine team.
-
-
+The ownership belongs to two teams. One in charge of the platform and the actuator. Another in charge of the engine. I was part of the engine team.
 ####Simplified diagram.
 ![diagram v1](/images/thoughts-on-legacy-software/vnc_1.png)
 
@@ -59,12 +57,11 @@ We needed to tear that monolith down into services. Each in charge of a single f
 On our side, we couldn't do much about the input either. The core class was traversal to every functionality. There was no way that refactoring would work.
 We needed to start from scratch and simplify each service. All while honoring the contract we had with the Platform.
 
-We were stuck with this for months, years. Eventually, I was required to start working on a new engine for a different system.
+We were stuck with this for months, years. Eventually, PM required me to start working on a new engine for a different system.
 We didn't want to limit ourselves from the start (and we had the urgency of coming up with a new feature).
 It took some convincing, but I was able to join forces with the other teams. After syncing our schedules we implemented a public interface layer for each service.
 The signature of every endpoint would be clean and concise.
-With the new engine made from scratch, this was ideal. The old one would receive the XMLs through an auxiliary param `extra_params`.
-
+We made the new engine from scratch with this interface in mind. While the old one would receive the XMLs through an auxiliary param `extra_params`.
 
 #### After implementing the public interface layer and adding the new engine
 ![diagram v2](/images/thoughts-on-legacy-software/vnc_2.png)
@@ -74,7 +71,7 @@ With the new engine made from scratch, this was ideal. The old one would receive
 * Other teams became consumers of a public interface instead of the CLI.
 * No need (or at least much less) to sync with other teams to do maintenance work on our stack.
 * We were able to break down the monolith **one functionality at the time**. The only constraint is committing to the new public interface.
-* New services were coded from scratch, simpler and easier to test. But only **because we were very familiar with the subject**.
+* We coded the new services from scratch, simpler and easier to test. But only **because we were very familiar with the subject**.
 * During the rollout process of new code, we could do AB testing vs the old engine.
 * Test suite now takes < 5 min for all projects.
 * Public interface required only the necessary to do each task.
