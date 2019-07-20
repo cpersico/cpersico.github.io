@@ -66,7 +66,7 @@ We made the new engine from scratch with this interface in mind. While the old o
 #### After implementing the public interface layer and adding the new engine
 ![diagram v2](/images/thoughts-on-legacy-software/vnc_2.png)
 
-###Here's what we achieved:
+###What we achieved:
 
 * Other teams became consumers of a public interface instead of the CLI.
 * No need (or at least much less) to sync with other teams to do maintenance work on our stack.
