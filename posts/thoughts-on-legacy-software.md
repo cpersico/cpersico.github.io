@@ -92,7 +92,16 @@ desktop app (because the Platform expects that) But that is another battle...
 
 
 ### Lessons Learned
-I will leave the hard technical details for another opportunity.
+
+In the end, a facade untangled this mess. But there was a journey.
+The root can be traced to a design decision. A shortcut with deceiving convenience left two teams deadlocked for years.
+
+If I have to make a list of takeaways it would include:
+
+* Input is paramount.
+* Abstract behind your ideal interface even if its a facade.
+* When possible, replace productive code using AB testing during rollout.
+* Refactoring is expensive and risky. Make sure you understand the problem.
 
 This is a story about imperfect software design. About working on something huge under constraints beyond our control. About patience and choosing battles.
 What I learned is that the opportunity for change may come someday and you may not have control over it. All you can do is **be ready**. 
